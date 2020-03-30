@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',            # add this
+    'django.contrib.postgres',
+    'corsheaders',           # add this
     'rest_framework',         # add this
-    'tours'
+    'djongo',
+    'tours',
+    'times'
 ]
 
 MIDDLEWARE = [
@@ -79,8 +82,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'test',
+        'HOST': 'mongodb+srv://godDB:zqEBkaEmor8ViNGX@cluster0-rk0os.mongodb.net/test?retryWrites=true&w=majority',
+        'USER': 'godDB',
+        'PASSWORD': 'zqEBkaEmor8ViNGX'
     }
 }
 
