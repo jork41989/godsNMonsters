@@ -1,11 +1,15 @@
 from django.db import models
+from tours import models as tours_models
 
 # Create your models here.
 
 class Times(models.Model):
   date = models.DateField()
-  times = models.TextField()
+  time = models.TextField()
+  taken = models.BooleanField(default=False)
+  appointment_id = models.ForeignKey(
+      tours_models.Tours, on_delete=models.DO_NOTHING,)
 
 
   def __str__(self):
-      return self.times
+      return self.time

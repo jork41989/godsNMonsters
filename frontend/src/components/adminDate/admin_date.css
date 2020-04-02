@@ -1,0 +1,52 @@
+.timesDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.timesForm {
+  display: flex;
+  flex-direction: row;
+}
+
+.timeButton{
+  width: 150px;
+  height: 20px;
+  background-color: lightskyblue;
+  color: black;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.timeSelected{
+  background-color: lightgreen;
+}
+
+.timesTitle{
+  font-size: 30px;
+  text-align: center;
+  color: white;
+}
+
+.datepickerDiv{
+  width: 300px;
+   margin-bottom: 15px;
+   margin-right: 10px;
+}
+
+#formDate{
+  width: 300px;
+  height: 20px;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .timesForm {
+    flex-direction: column;
+  }
+}

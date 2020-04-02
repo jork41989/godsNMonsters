@@ -1,0 +1,9 @@
+.body{
+  margin-left: 10%;
+  width: 80%;
+}
+
+body{
+  margin: 0;
+  background-color: rgb(100, 100, 100);
+}

@@ -1,0 +1,17 @@
+.NavMain{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 0%;
+  margin-bottom: 1%;
+  height: 100px;
+  align-items: center;
+  background-color: grey;
+}
+
+.logo{
+  height: 90%;
+}
