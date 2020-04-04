@@ -21,7 +21,8 @@ from times import views as timesView
 
 router = routers.DefaultRouter()
 router.register(r'tours', toursView.ToursView, 'tours')
-router.register(r'times', timesView.TimesView, 'timesView')
+router.register(r'timesBack', timesView.TimesView, 'timesBackView')
+router.register(r'times', timesView.TimesCustomerView, 'timesView')
 
 urlpatterns = [
     path('admin/', admin.site.urls),         path('api/', include(router.urls))

@@ -8,7 +8,7 @@ class Times(models.Model):
   time = models.TextField()
   taken = models.BooleanField(default=False)
   appointment_id = models.ForeignKey(
-      tours_models.Tours, on_delete=models.DO_NOTHING,)
+      tours_models.Tours, on_delete=models.DO_NOTHING, blank=True)
 
 
   def __str__(self):

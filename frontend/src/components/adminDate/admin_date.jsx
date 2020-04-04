@@ -58,7 +58,7 @@ class AdminDate extends React.Component {
     timesSub.forEach(time =>{
       let date = {
         date: dateSub,
-        times: time,
+        time: time,
       }
       this.props.newTimesAdd(date)
         .then(this.errorCheck);
@@ -68,9 +68,7 @@ class AdminDate extends React.Component {
 
 
   render () {
-    console.log(this.state)
     let today = new Date().toISOString().substr(0, 10)
-    console.log(today)
     return (
       <div>
         <div className="timesTitle">Add Times</div>

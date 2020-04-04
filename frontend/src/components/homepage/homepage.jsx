@@ -1,4 +1,5 @@
 import React from 'react';
+import FormTimes from '../mainForm/form_times_container'
 
 class HomePage extends React.Component {
 
@@ -6,6 +7,7 @@ class HomePage extends React.Component {
     return(
       <div>
         Welcome Home
+        <FormTimes />
       </div>
     )
   }

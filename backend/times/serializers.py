@@ -5,4 +5,4 @@ from .models import Times
 class TimesSerializer(serializers.ModelSerializer):
     class Meta:
       model = Times
-      fields = ('date', 'time', 'taken', 'appointment_id')
+      fields = ('id','date', 'time', 'taken', 'appointment_id')

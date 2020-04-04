@@ -7,7 +7,6 @@ class AdminSchedule extends React.Component {
   }
 
   render(){
-    console.log(this.props.times)
     return(
       <div>Times go here!</div>
     )
