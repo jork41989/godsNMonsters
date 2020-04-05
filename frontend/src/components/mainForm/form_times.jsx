@@ -1,10 +1,12 @@
 import React from 'react';
+import './form.css'
 
 class FormTimes extends React.Component {
 
   constructor(props) {
     super(props);
     this.dateCheck = this.dateCheck.bind(this)
+    this.dayButtons = this.dayButtons.bind(this)
   }
 
   componentDidMount(){
@@ -33,14 +35,36 @@ class FormTimes extends React.Component {
         }
       })
     }
-    return organized
+    return this.dayButtons(organized)
+  }
+
+  timesListAction(e){
+    e.preventDefault();
+
+    console.log(e.target.innerHTML)
+
+  }
+
+  dayButtons(days){
+    let buttons = []
+    let i = 1
+    days.forEach(day =>{
+      buttons.push(<button className="dayButtons" onClick={this.timesListAction} key={i}>{day}</button>)
+      i++
+    })
+    return buttons
   }
 
 
   render(){
-    this.dateCheck()
+    let dayList = this.dateCheck()
+    console.log(dayList)
     return(
-      <div>Form Times</div>
+      <div>
+        <h1 className="formDate">Please Choose A Date</h1>
+        <div className='dayDiv'>{dayList}</div>
+        
+      </div>
     )
   }
   

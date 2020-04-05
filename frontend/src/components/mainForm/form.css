@@ -1,0 +1,18 @@
+.formDate{
+  color: #ffffff;
+}
+
+.dayButtons{
+  margin-right: 20px;
+  margin-top: 10px;
+  background-color: lightskyblue;
+  cursor: pointer;
+  font-size: x-large;
+  border-radius: 5px;
+}
+
+.dayDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
