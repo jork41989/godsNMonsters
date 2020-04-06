@@ -6,6 +6,9 @@ class FormTimes extends React.Component {
   constructor(props) {
     super(props);
     this.times = []
+    this.state = {
+      timesButtons: []
+    }
     this.dateDiv = true
     this.timesDiv = false
     this.timesListAction = this.timesListAction.bind(this)
@@ -40,8 +43,25 @@ class FormTimes extends React.Component {
           down.classList.add('hidden')
           div.classList.remove('hidden')
         }
-      case 'time':
-        console.log('time')
+        break
+      case 'times':
+        up = document.getElementById("timeUp")
+        down = document.getElementById("timeDown")
+        div = document.getElementById("timesBody")
+        if (this.timesDiv) {
+          this.timesDiv = false
+          up.classList.add('hidden')
+          down.classList.remove('hidden')
+          div.classList.add('hidden')
+        } else{
+          this.timesDiv = true
+          up.classList.remove('hidden')
+          down.classList.add('hidden')
+          div.classList.remove('hidden')
+          console.log(div)
+        }
+        console.log(div)
+        break
       default:
         return null
     }
@@ -77,6 +97,19 @@ class FormTimes extends React.Component {
 
   timesListAction(e){
     e.preventDefault();
+
+    let dayup = document.getElementById("dateUp")
+    let daydown = document.getElementById("dateDown")
+    let daydiv = document.getElementById("daysBody")
+    let timeup = document.getElementById("timeUp")
+    let timedown = document.getElementById("timeDown")
+    let timediv = document.getElementById("timesBody")
+    this.timesDiv = true
+    this.dateDiv = false
+    timeup.classList.remove('hidden')
+    timedown.classList.add('hidden')
+    timediv.classList.remove('hidden')
+    
     this.times = this.props.times[e.target.innerHTML]
     this.displayTimes()
   }
@@ -84,13 +117,15 @@ class FormTimes extends React.Component {
   displayTimes(){
     let timesText = Object.keys(this.times)
     let buttons = []
-    console.log("HA")
+    let i = 1
     if(timesText){
       timesText.forEach(time => {
-        buttons.push(<button>{time}</button> )
+        buttons.push(<button key={i} className="dayButtons">{time}</button> )
+        i++
       })
-      return buttons
+      this.setState({ timesButtons: buttons}) 
     } 
+    console.log(this.state)
     
   }
 
@@ -107,6 +142,7 @@ class FormTimes extends React.Component {
 
   render(){
     let dayList = this.dateCheck()
+    let timesList = this.state.timesButtons
     return(
       <div>
         <div className="daysMainDiv">
@@ -123,7 +159,7 @@ class FormTimes extends React.Component {
             <i className="fas fa-arrow-circle-down dropDownArrows" id="timeDown" onClick={this.dropDowns}></i>
             <i className="fas fa-arrow-circle-up hidden dropDownArrows" onClick={this.dropDowns} id="timeUp"></i>
           </div>
-          <div></div>
+          <div className='timesDiv hidden' id="timesBody">{timesList}</div>
         </div>
         
         
