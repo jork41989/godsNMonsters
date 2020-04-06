@@ -8,6 +8,7 @@ from django.db import models
 class Tours(models.Model):
   date = models.DateField()
   time = models.TextField()
+  name = models.TextField(default="")
   interest = models.TextField()
   phone = models.TextField()
   email = models.TextField()

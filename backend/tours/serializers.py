@@ -6,5 +6,5 @@ class ToursSerializer(serializers.ModelSerializer):
   class Meta:
     model = Tours
     fields = ('id', 'date', 'time', 'interest',
-              'phone', 'email', 'notes', 'completed')
+              'phone', 'email', 'notes', 'completed', 'name')
     

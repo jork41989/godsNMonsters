@@ -7,14 +7,17 @@ class FormTimes extends React.Component {
     super(props);
     this.times = []
     this.state = {
-      timesButtons: []
+      timesButtons: [],
+      selectedTime: {}
     }
     this.dateDiv = true
     this.timesDiv = false
+    this.formDiv = false
     this.timesListAction = this.timesListAction.bind(this)
     this.dropDowns = this.dropDowns.bind(this)
     this.dateCheck = this.dateCheck.bind(this)
     this.dayButtons = this.dayButtons.bind(this)
+    this.dayButtonAction = this.dayButtonAction.bind(this)
   }
 
   componentDidMount(){
@@ -58,9 +61,23 @@ class FormTimes extends React.Component {
           up.classList.remove('hidden')
           down.classList.add('hidden')
           div.classList.remove('hidden')
-          console.log(div)
         }
-        console.log(div)
+        break
+      case 'form':
+        up = document.getElementById("formUp")
+        down = document.getElementById("formDown")
+        div = document.getElementById("formBody")
+        if (this.formDiv) {
+          this.formDiv = false
+          up.classList.add('hidden')
+          down.classList.remove('hidden')
+          div.classList.add('hidden')
+        } else {
+          this.formDiv = true
+          up.classList.remove('hidden')
+          down.classList.add('hidden')
+          div.classList.remove('hidden')
+        }
         break
       default:
         return null
@@ -106,6 +123,9 @@ class FormTimes extends React.Component {
     let timediv = document.getElementById("timesBody")
     this.timesDiv = true
     this.dateDiv = false
+    dayup.classList.add('hidden')
+    daydiv.classList.add('hidden')
+    daydown.classList.remove('hidden')
     timeup.classList.remove('hidden')
     timedown.classList.add('hidden')
     timediv.classList.remove('hidden')
@@ -119,30 +139,55 @@ class FormTimes extends React.Component {
     let buttons = []
     let i = 1
     if(timesText){
-      timesText.forEach(time => {
-        buttons.push(<button key={i} className="dayButtons">{time}</button> )
+      timesText.map(time => {
+        buttons.push(<button key={i} className="dayButtons" onClick={this.dayButtonAction}>{time}</button> )
         i++
       })
       this.setState({ timesButtons: buttons}) 
     } 
-    console.log(this.state)
     
   }
 
   dayButtons(days){
     let buttons = []
     let i = 1
-    days.forEach(day =>{
+    days.map(day =>{
       buttons.push(<button className="dayButtons" onClick={this.timesListAction} key={i}>{day}</button>)
       i++
     })
     return buttons
   }
 
+  dayButtonAction(e){
+    let timeup = document.getElementById("timeUp")
+    let timedown = document.getElementById("timeDown")
+    let timediv = document.getElementById("timesBody")
+    let formup = document.getElementById("formUp")
+    let formdown = document.getElementById("formDown")
+    let formdiv = document.getElementById("formBody")
+    timeup.classList.add('hidden')
+    timediv.classList.add('hidden')
+    timedown.classList.remove('hidden')
+    formup.classList.remove('hidden')
+    formdown.classList.add('hidden')
+    formdiv.classList.remove('hidden')
+
+    e.preventDefault()
+    let time = this.times[e.target.innerHTML]
+    this.setState({selectedTime: time})
+  }
+
 
   render(){
     let dayList = this.dateCheck()
     let timesList = this.state.timesButtons
+    let day = ""
+    let time = ""
+    if (Object.keys(this.state.selectedTime).length > 0){
+      console.log(this.state.selectedTime)
+      day = this.state.selectedTime.date
+      time = this.state.selectedTime.time
+    }
     return(
       <div>
         <div className="daysMainDiv">
@@ -160,6 +205,25 @@ class FormTimes extends React.Component {
             <i className="fas fa-arrow-circle-up hidden dropDownArrows" onClick={this.dropDowns} id="timeUp"></i>
           </div>
           <div className='timesDiv hidden' id="timesBody">{timesList}</div>
+        </div>
+        <div className="formMainDiv">
+          <div className="formDivHeaders" id="form">
+            <h2>Please enter your information</h2>
+            <i className="fas fa-arrow-circle-down dropDownArrows" id="formDown" onClick={this.dropDowns}></i>
+            <i className="fas fa-arrow-circle-up hidden dropDownArrows" onClick={this.dropDowns} id="formUp"></i>
+          </div>
+          <div className="formDiv hidden" id="formBody">
+            <form >
+              <div>Day: {day}</div>
+              <div>Time: {time}</div>
+              <input type="text" name="name" id="name"/>
+              <input type="email" name="email" id="email"/>
+              <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+              
+            </form> 
+          </div> 
+
+
         </div>
         
         
