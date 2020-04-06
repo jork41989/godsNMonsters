@@ -16,3 +16,28 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+.formDivHeaders{
+  background-color: lightgray;
+  border-radius: 5px;
+  height: 30px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.formDivHeaders h2 {
+  margin: 0px;
+  padding-left: 1%;
+  width: 60%;
+  
+}
+
+.dropDownArrows{
+  font-size: 26px;
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}

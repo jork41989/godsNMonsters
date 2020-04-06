@@ -5,12 +5,49 @@ class FormTimes extends React.Component {
 
   constructor(props) {
     super(props);
+    this.times = []
+    this.dateDiv = true
+    this.timesDiv = false
+    this.timesListAction = this.timesListAction.bind(this)
+    this.dropDowns = this.dropDowns.bind(this)
     this.dateCheck = this.dateCheck.bind(this)
     this.dayButtons = this.dayButtons.bind(this)
   }
 
   componentDidMount(){
     this.props.getTimes()
+  }
+
+  dropDowns(e){
+    e.preventDefault();
+    let type = e.target.parentNode.id
+    let div
+    let up
+    let down
+    switch(type){
+      case 'dates':
+        up = document.getElementById("dateUp")
+        down  = document.getElementById("dateDown")
+        div = document.getElementById("daysBody")
+        if (this.dateDiv){
+          this.dateDiv = false
+          up.classList.add('hidden')
+          down.classList.remove('hidden')
+          div.classList.add('hidden')
+        } else {
+          this.dateDiv = true
+          up.classList.remove('hidden')
+          down.classList.add('hidden')
+          div.classList.remove('hidden')
+        }
+      case 'time':
+        console.log('time')
+      default:
+        return null
+    }
+      
+
+
   }
 
   dateCheck(){
@@ -40,9 +77,21 @@ class FormTimes extends React.Component {
 
   timesListAction(e){
     e.preventDefault();
-
-    console.log(e.target.innerHTML)
-
+    this.times = this.props.times[e.target.innerHTML]
+    this.displayTimes()
+  }
+  
+  displayTimes(){
+    let timesText = Object.keys(this.times)
+    let buttons = []
+    console.log("HA")
+    if(timesText){
+      timesText.forEach(time => {
+        buttons.push(<button>{time}</button> )
+      })
+      return buttons
+    } 
+    
   }
 
   dayButtons(days){
@@ -58,11 +107,25 @@ class FormTimes extends React.Component {
 
   render(){
     let dayList = this.dateCheck()
-    console.log(dayList)
     return(
       <div>
-        <h1 className="formDate">Please Choose A Date</h1>
-        <div className='dayDiv'>{dayList}</div>
+        <div className="daysMainDiv">
+          <div className="formDivHeaders" id="dates"> 
+            <h2>Please Choose a Date</h2> 
+            <i className="fas fa-arrow-circle-down hidden dropDownArrows" id="dateDown" onClick={this.dropDowns}></i>
+            <i className="fas fa-arrow-circle-up dropDownArrows" onClick={this.dropDowns} id="dateUp"></i>
+          </div>
+          <div className='dayDiv' id="daysBody">{dayList}</div>
+        </div>
+        <div className="timesMainDiv">
+          <div className="formDivHeaders" id="times"> 
+            <h2>Please Choose a Time</h2>
+            <i className="fas fa-arrow-circle-down dropDownArrows" id="timeDown" onClick={this.dropDowns}></i>
+            <i className="fas fa-arrow-circle-up hidden dropDownArrows" onClick={this.dropDowns} id="timeUp"></i>
+          </div>
+          <div></div>
+        </div>
+        
         
       </div>
     )
