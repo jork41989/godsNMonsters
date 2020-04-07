@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',         # add this
     'djongo',
     'tours',
-    'times'
+    'times',
+    'mongoengine'
 ]
 
 MIDDLEWARE = [
@@ -80,13 +81,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'test',
-        'HOST': 'mongodb+srv://godDB:zqEBkaEmor8ViNGX@cluster0-rk0os.mongodb.net/test?retryWrites=true&w=majority',
-        'USER': 'godDB',
-        'PASSWORD': 'zqEBkaEmor8ViNGX'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

@@ -7,6 +7,6 @@ from django.contrib import admin
 from .models import Tours
 
 class ToursAdmin(admin.ModelAdmin):
-  list_display = ('date', 'time', 'phone', 'email', 'notes', 'completed')
+  list_display = ('date', 'time', 'phone', 'email', 'name', 'notes', 'completed')
 
 admin.site.register(Tours, ToursAdmin)
