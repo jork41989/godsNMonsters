@@ -24,10 +24,27 @@ class FormTimes extends React.Component {
     this.dayButtons = this.dayButtons.bind(this)
     this.dayButtonAction = this.dayButtonAction.bind(this)
     this.interestButton = this.interestButton.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount(){
     this.props.getTimes()
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let tour = {
+      name: this.state.name,
+      email: this.state.email,
+      phone:  this.state.phone,
+      interests: Object.values(this.state.interests),
+      notes: this.state.notes,
+      time: this.state.selectedTime.time,
+      date: this.state.selectedTime.date
+    }
+    // this.props.newActorAdd(actor)
+    //   .then(this.errorCheck);
+    // this.props.closeModal();
   }
 
   dropDowns(e){
