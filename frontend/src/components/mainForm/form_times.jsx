@@ -8,7 +8,12 @@ class FormTimes extends React.Component {
     this.times = []
     this.state = {
       timesButtons: [],
-      selectedTime: {}
+      selectedTime: {},
+      name: "",
+      email: "",
+      phone: "",
+      interests: {},
+      notes: ""
     }
     this.dateDiv = true
     this.timesDiv = false
@@ -18,6 +23,7 @@ class FormTimes extends React.Component {
     this.dateCheck = this.dateCheck.bind(this)
     this.dayButtons = this.dayButtons.bind(this)
     this.dayButtonAction = this.dayButtonAction.bind(this)
+    this.interestButton = this.interestButton.bind(this)
   }
 
   componentDidMount(){
@@ -177,6 +183,20 @@ class FormTimes extends React.Component {
     this.setState({selectedTime: time})
   }
 
+  interestButton(e){
+    e.preventDefault();
+    let interest  = e.target.innerHTML
+    let interests = this.state.interests
+    if (interests[interest]){
+      e.target.classList.remove("added")
+      delete interests[interest]
+    } else {
+      e.target.classList.add("added")
+      interests[interest] = interest
+    }
+    this.setState({interests: interests})
+  }
+
 
   render(){
     let dayList = this.dateCheck()
@@ -184,7 +204,6 @@ class FormTimes extends React.Component {
     let day = ""
     let time = ""
     if (Object.keys(this.state.selectedTime).length > 0){
-      console.log(this.state.selectedTime)
       day = this.state.selectedTime.date
       time = this.state.selectedTime.time
     }
@@ -213,12 +232,32 @@ class FormTimes extends React.Component {
             <i className="fas fa-arrow-circle-up hidden dropDownArrows" onClick={this.dropDowns} id="formUp"></i>
           </div>
           <div className="formDiv hidden" id="formBody">
-            <form >
-              <div>Day: {day}</div>
-              <div>Time: {time}</div>
-              <input type="text" name="name" id="name"/>
-              <input type="email" name="email" id="email"/>
-              <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+            <form className="formLayout">
+              <div className="formFeilds">
+              <div className="formSidebySide">
+                <div className="formDateTime">Day: {day}</div>
+                <div className="formDateTime">Time: {time}</div>
+                <label htmlFor="name">Name</label>
+                <input className="formInput" type="text" name="name" id="name" />
+                <label htmlFor="email">Email</label>
+                <input className="formInput" type="email" name="email" id="email" />
+                <label htmlFor="phone">Phone</label>
+                <input className="formInput" type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+
+              </div>
+              
+              <div className="formSidebySide">
+                <p>Please Select an Interest:</p>
+                <div className="interestsDiv">
+                  <button className="interestButton" onClick={this.interestButton}>Comics</button>
+                  <button className="interestButton" onClick={this.interestButton}>Collectables</button>
+                  <button className="interestButton" onClick={this.interestButton}>Games</button>
+                </div>
+                <p>Please include some details of what your looking for:</p>
+                <textarea name="notes" id="notes" cols="20" rows="10"></textarea>
+              </div>
+              </div>
+              <input type="submit" value="Book Appointment"/>
               
             </form> 
           </div> 

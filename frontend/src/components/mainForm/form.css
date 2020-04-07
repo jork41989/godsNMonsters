@@ -5,7 +5,7 @@
 .dayButtons{
   margin-right: 20px;
   margin-top: 10px;
-  background-color: lightskyblue;
+  background-color: rgb(161, 218, 253);
   cursor: pointer;
   font-size: x-large;
   border-radius: 5px;
@@ -40,4 +40,63 @@
 
 .hidden{
   display: none !important;
+}
+
+.formDateTime{
+  font-size: large;
+  color: rgb(251, 251, 251);
+  margin-bottom: 20px;
+}
+
+.formFeilds{
+  display: flex;
+  flex-direction: row;
+}
+
+.formLayout{
+  display: flex;
+  flex-direction: column;
+}
+
+.formSidebySide{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 5px;
+}
+
+.added{
+  background-color: rgb(157, 246, 157) !important;
+}
+
+.interestsDiv{
+  margin-top: 5px;
+}
+
+.formDiv{
+  margin: 5px;
+}
+.formFeilds label{
+  color: #ffffff;
+}
+
+.formInput{
+  width: 40%;
+  margin-bottom: 20px;
+}
+
+.interestButton{
+  background-color: rgb(161, 218, 253);
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#notes{
+  margin-top: 10px;
+  max-width: 50%;
+}
+
+.formSidebySide p{
+  color: #ffffff;
+
 }
