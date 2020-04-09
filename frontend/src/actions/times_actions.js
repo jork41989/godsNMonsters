@@ -38,3 +38,12 @@ export const newTimesAdd = (data) => dispatch => (
         )
     )
 )
+
+export const bookATime = (data) => dispatch => (
+  TimesApiUtil.bookTime(data)
+    .then(date => dispatch(receiveATime(date)),
+      err => (
+        dispatch(receiveErrors(err.response.data))
+      )
+    )
+)

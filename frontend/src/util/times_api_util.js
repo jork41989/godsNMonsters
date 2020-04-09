@@ -14,7 +14,6 @@ export const getCustomerTimes = () => {
 }
 
 export const addTimes = (data) => {
-  console.log(cookie)
   return axios({
         method: 'post',
         url: '/api/times/',
@@ -22,3 +21,16 @@ export const addTimes = (data) => {
         headers: {"X-CSRFToken": cookie}
 })
 }
+
+export const bookTime = (data) => {
+    return axios({
+      method: 'put',
+      url: `/api/times/${data.id}/`,
+      data: data,
+      headers: {
+        "X-CSRFToken": cookie
+      }
+    })
+
+}
+

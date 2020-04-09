@@ -5,9 +5,12 @@ const cookie = Cookies.get().csrftoken
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = cookie
 
+export const getTours = () => {
+  return axios.get('/api/tours')
+}
+
 
 export const addTour = (data) => {
-  console.log(cookie)
   return axios({
     method: 'post',
     url: '/api/tours/',

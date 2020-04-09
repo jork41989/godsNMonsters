@@ -25,10 +25,18 @@ class FormTimes extends React.Component {
     this.dayButtonAction = this.dayButtonAction.bind(this)
     this.interestButton = this.interestButton.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.errorCheck = this.errorCheck.bind(this)
   }
 
   componentDidMount(){
     this.props.getTimes()
+  }
+
+  errorCheck() {
+    if (Object.keys(this.props.tourErrors).length === 0) {
+
+    }
+    this.setState({ errors: this.props.tourErrors })
   }
 
   handleSubmit(e) {
@@ -37,14 +45,26 @@ class FormTimes extends React.Component {
       name: this.state.name,
       email: this.state.email,
       phone:  this.state.phone,
-      interests: Object.values(this.state.interests),
+      interest: JSON.stringify(Object.values(this.state.interests)),
       notes: this.state.notes,
       time: this.state.selectedTime.time,
       date: this.state.selectedTime.date
     }
-    // this.props.newActorAdd(actor)
-    //   .then(this.errorCheck);
-    // this.props.closeModal();
+    let time = {...this.state.selectedTime}
+    let timeId
+    time.taken = true
+    this.props.newTourAdd(tour)
+      .then(booked => {
+        if (booked.tour){
+        timeId = booked.tour.data.id
+        time.appointment_id = timeId
+        console.log(time)
+        this.props.bookATime(time)
+        } else {
+          this.errorCheck()
+        }
+      })
+      
   }
 
   dropDowns(e){
@@ -163,6 +183,7 @@ class FormTimes extends React.Component {
     let i = 1
     if(timesText){
       timesText.map(time => {
+        console.log(time)
         buttons.push(<button key={i} className="dayButtons" onClick={this.dayButtonAction}>{time}</button> )
         i++
       })
@@ -179,6 +200,13 @@ class FormTimes extends React.Component {
       i++
     })
     return buttons
+  }
+
+  update(field) {
+
+    return e => this.setState({
+      [field]: e.currentTarget.value
+    });
   }
 
   dayButtonAction(e){
@@ -249,17 +277,17 @@ class FormTimes extends React.Component {
             <i className="fas fa-arrow-circle-up hidden dropDownArrows" onClick={this.dropDowns} id="formUp"></i>
           </div>
           <div className="formDiv hidden" id="formBody">
-            <form className="formLayout">
+            <form className="formLayout" onSubmit={this.handleSubmit}>
               <div className="formFeilds">
               <div className="formSidebySide">
                 <div className="formDateTime">Day: {day}</div>
                 <div className="formDateTime">Time: {time}</div>
                 <label htmlFor="name">Name</label>
-                <input className="formInput" type="text" name="name" id="name" />
+                  <input className="formInput" type="text" name="name" id="name" onChange={this.update('name')}/>
                 <label htmlFor="email">Email</label>
-                <input className="formInput" type="email" name="email" id="email" />
+                  <input className="formInput" type="email" name="email" id="email" onChange={this.update('email')} />
                 <label htmlFor="phone">Phone</label>
-                <input className="formInput" type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                  <input className="formInput" type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onChange={this.update('phone')}/>
 
               </div>
               
@@ -271,7 +299,7 @@ class FormTimes extends React.Component {
                   <button className="interestButton" onClick={this.interestButton}>Games</button>
                 </div>
                 <p>Please include some details of what your looking for:</p>
-                <textarea name="notes" id="notes" cols="20" rows="10"></textarea>
+                  <textarea name="notes" id="notes" cols="20" rows="10" onChange={this.update('notes')}></textarea>
               </div>
               </div>
               <input type="submit" value="Book Appointment"/>
