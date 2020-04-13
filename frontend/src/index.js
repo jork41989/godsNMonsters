@@ -6,9 +6,19 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
 document.addEventListener('DOMContentLoaded', () => {
+   let token = localStorage.getItem('token');
    let store;
 
-   store = configureStore({});
+   if (token) {
+      const preloadedState = {
+         auth: {
+            token: token
+         }
+      };
+      store = configureStore(preloadedState);
+   } else {
+      store = configureStore();
+   }
 
 
    const root = document.getElementById('root');

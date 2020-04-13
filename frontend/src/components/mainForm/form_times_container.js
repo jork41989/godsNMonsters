@@ -7,7 +7,9 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     times: state.entities.times,
     timesErrors: state.errors.times,
-    tourErrors: state.errors.tours
+    tourErrors: state.errors.tours,
+    loggedIn: state.auth.token,
+    currentUser: state.auth.user
   })
 }
 

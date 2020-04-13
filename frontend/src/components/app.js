@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Switch } from 'react-router-dom';
 import HomePage from './homepage/homepage'
@@ -16,7 +17,11 @@ import './index.css'
 
 // import SettingsContainer from './profile/settings_container';
 
-const App = () => (
+const App = ({ store }) => {
+
+   
+
+  return (
   <div className={'mainDiv'}>
     <div className={'NavDivWidth'}>
       <NavBarContainer />
@@ -33,6 +38,7 @@ const App = () => (
 
     </div>
   </div>
-);
+  )
+  };
 
 export default App;

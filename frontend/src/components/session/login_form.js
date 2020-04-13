@@ -44,7 +44,6 @@ class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    console.log(user)
     this.props.login(user)
       .then(user => { 
         if(this.props.loggedIn){

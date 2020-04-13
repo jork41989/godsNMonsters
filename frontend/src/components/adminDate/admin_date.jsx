@@ -1,5 +1,6 @@
 import React from 'react'
 import './admin_date.css'
+import { withRouter } from 'react-router-dom';
 
 class AdminDate extends React.Component {
   constructor(props){
@@ -13,6 +14,18 @@ class AdminDate extends React.Component {
     this.errorCheck = this.errorCheck.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addTimeArr = this.addTimeArr.bind(this)
+  }
+
+  componentDidMount(){
+    if (!this.props.loggedIn){
+      this.props.history.push('/')
+    }
+  }
+
+  componentDidUpdate(){
+    if (!this.props.loggedIn) {
+      this.props.history.push('/')
+    }
   }
 
 
@@ -96,4 +109,4 @@ class AdminDate extends React.Component {
 
 }
 
-export default AdminDate
+export default withRouter(AdminDate)

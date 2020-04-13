@@ -5,7 +5,9 @@ import AdminSchedule from './admin_schedule'
 const mapStateToProps = (state, ownProps) => {
   return ({
     times: state.entities.times,
-    errors: state.errors.times
+    errors: state.errors.times,
+    loggedIn: state.auth.token,
+    currentUser: state.auth.user
   })
 }
 
