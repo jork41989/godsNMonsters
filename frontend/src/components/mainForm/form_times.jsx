@@ -1,5 +1,7 @@
 import React from 'react';
 import './form.css'
+import { withRouter } from 'react-router-dom';
+
 
 class FormTimes extends React.Component {
 
@@ -58,8 +60,8 @@ class FormTimes extends React.Component {
         if (booked.tour){
         timeId = booked.tour.data.id
         time.appointment_id = timeId
-        console.log(time)
         this.props.bookATime(time)
+          .then(this.props.history.push("tourBooked"))
         } else {
           this.errorCheck()
         }
@@ -318,4 +320,4 @@ class FormTimes extends React.Component {
 
 }
 
-export default FormTimes
+export default withRouter(FormTimes)

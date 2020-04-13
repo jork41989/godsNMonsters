@@ -39,11 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'corsheaders',           # add this
-    'rest_framework',         # add this
+    'rest_framework',
+    'knox',     # add this
     'djongo',
     'tours',
     'times',
-    'mongoengine'
+    'accounts',
+    'mongoengine',
+
 ]
 
 MIDDLEWARE = [
@@ -76,6 +79,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    ),
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+}
 
 
 # Database
