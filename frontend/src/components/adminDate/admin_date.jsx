@@ -101,7 +101,7 @@ class AdminDate extends React.Component {
                 <div className="timeButton" id='4PM' onClick={this.addTimeArr}>4PM-5PM</div>
               </div>
             </div>
-            <input type="submit" value="Add Times"/>
+            <input type="submit" value="Add Times" className="submit"/>
           </form>
       </div>
     )

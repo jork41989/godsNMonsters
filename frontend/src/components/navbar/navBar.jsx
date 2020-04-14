@@ -18,13 +18,13 @@ class NavBar extends React.Component {
   checkUser(){
     if (this.props.loggedIn) {
       return (<div>
-          <button>
+          <button className="button4 navbutton">
             <Link to="/timesAvailable">View Times</Link>
           </button>
-          <button>
+        <button className="button4 navbutton">
             <Link to="/datesForm">Add Times</Link>
           </button>
-          <button onClick={this.props.logout}>
+        <button onClick={this.props.logout} className="button4 navbutton">
             Logout
           </button>
         </div>

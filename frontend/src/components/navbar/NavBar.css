@@ -15,3 +15,14 @@
 .logo{
   height: 90%;
 }
+
+.navbutton a{
+  background-color: none;
+  text-decoration: none;
+  color: black;
+}
+
+.navbutton{
+  background-color: lightcyan;
+  color: black;
+}

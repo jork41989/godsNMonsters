@@ -301,10 +301,10 @@ class FormTimes extends React.Component {
                   <button className="interestButton" onClick={this.interestButton}>Games</button>
                 </div>
                 <p>Please include some details of what your looking for:</p>
-                  <textarea name="notes" id="notes" cols="20" rows="10" onChange={this.update('notes')}></textarea>
+                  <textarea name="notes" id="notes" cols="20" rows="10" className="text" onChange={this.update('notes')}></textarea>
               </div>
               </div>
-              <input type="submit" value="Book Appointment" className="submitButton"/>
+              <input type="submit" value="Book Appointment" className="button4 bouncy submit"/>
               
             </form> 
           </div> 
