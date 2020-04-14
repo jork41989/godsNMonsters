@@ -304,7 +304,7 @@ class FormTimes extends React.Component {
                   <textarea name="notes" id="notes" cols="20" rows="10" onChange={this.update('notes')}></textarea>
               </div>
               </div>
-              <input type="submit" value="Book Appointment"/>
+              <input type="submit" value="Book Appointment" className="submitButton"/>
               
             </form> 
           </div> 

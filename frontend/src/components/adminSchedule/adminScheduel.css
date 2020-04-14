@@ -1,0 +1,37 @@
+.weekHeader{
+  display: flex;
+  flex-direction: row;
+}
+
+.weekSelector{
+  margin: 5px;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.selected{
+  background-color: lightgreen;
+}
+
+.displayInfo{
+  color: white;
+  font-size: x-large;
+}
+
+.displayInfo a{
+  background-color: white;
+}
+
+#completed{
+  background-color: lightgreen;
+  color: black;
+  width: 100px;
+  text-align: center;
+}
+
+#notcompleted{
+  background-color: lightcoral;
+  color: black;
+  width: 100px;
+  text-align: center;
+}

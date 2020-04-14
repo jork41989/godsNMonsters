@@ -9,6 +9,10 @@ export const getTours = () => {
   return axios.get('/api/tours')
 }
 
+export const getTour = (id) => {
+  return axios.get(`/api/tours/${id}`)
+}
+
 
 export const addTour = (data) => {
   return axios({

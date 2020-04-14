@@ -24,6 +24,11 @@ export const getTours = () => dispatch => (
     .then(tours => dispatch(receiveTours(tours)))
 )
 
+export const getTour = (time) => dispatch => (
+  ToursApiUtil.getTour(time)
+    .then(tour => dispatch(receiveATour(tour)))
+)
+
 export const newTourAdd = (data) => dispatch => (
   ToursApiUtil.addTour(data)
     .then(tour => dispatch(receiveATour(tour)),
