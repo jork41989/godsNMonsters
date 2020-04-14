@@ -1,6 +1,7 @@
 import React from 'react';
 import './form.css'
 import { withRouter } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip'
 
 
 class FormTimes extends React.Component {
@@ -15,7 +16,8 @@ class FormTimes extends React.Component {
       email: "",
       phone: "",
       interests: {},
-      notes: ""
+      notes: "",
+      errors: {}
     }
     this.dateDiv = true
     this.timesDiv = false
@@ -40,6 +42,43 @@ class FormTimes extends React.Component {
     }
     this.setState({ errors: this.props.tourErrors })
   }
+
+  renderErrors() {
+
+    if (Object.keys(this.state.errors).includes('name')) {
+      let textField = document.getElementById('name')
+      textField.style.border = '3px solid red'
+    }
+    if (Object.keys(this.state.errors).includes('email')) {
+      let ratingField = document.getElementById('email')
+      ratingField.style.border = '3px solid red'
+    }
+    if (Object.keys(this.state.errors).includes('phone')) {
+      let ratingField = document.getElementById('phone')
+      ratingField.style.border = '3px solid red'
+    }
+    if (Object.keys(this.state.errors).includes('interest')) {
+      let ratingField = document.getElementById('interest')
+      ratingField.style.border = '3px solid red'
+    }
+    if (Object.keys(this.state.errors).includes('notes')) {
+      let ratingField = document.getElementById('notes')
+      ratingField.style.border = '3px solid red'
+    }
+
+    return (
+      <div>
+        {Object.keys(this.state.errors).map((error, i) => (
+          <div id={i}>
+            <ReactTooltip id={error} place="top" type="error" effect="solid">
+              <span>{this.state.errors[error]}</span>
+            </ReactTooltip>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
 
   handleSubmit(e) {
     e.preventDefault();
@@ -262,7 +301,7 @@ class FormTimes extends React.Component {
             <i className="fas fa-arrow-circle-down hidden dropDownArrows" id="dateDown" onClick={this.dropDowns}></i>
             <i className="fas fa-arrow-circle-up dropDownArrows" onClick={this.dropDowns} id="dateUp"></i>
           </div>
-          <div className='dayDiv' id="daysBody">{dayList}</div>
+          <div className='dayDiv' id="daysBody" >{dayList}</div>
         </div>
         <div className="timesMainDiv">
           <div className="formDivHeaders" id="times"> 
@@ -284,8 +323,8 @@ class FormTimes extends React.Component {
               <div className="formSidebySide">
                 <div className="formDateTime">Day: {day}</div>
                 <div className="formDateTime">Time: {time}</div>
-                <label htmlFor="name">Name</label>
-                  <input className="formInput" type="text" name="name" id="name" onChange={this.update('name')}/>
+                  <label htmlFor="name" >Name</label>
+                  <input className="formInput" type="text" name="name" id="name" data-tip data-for="name" onChange={this.update('name')}/>
                 <label htmlFor="email">Email</label>
                   <input className="formInput" type="email" name="email" id="email" onChange={this.update('email')} />
                 <label htmlFor="phone">Phone</label>
@@ -295,7 +334,7 @@ class FormTimes extends React.Component {
               
               <div className="formSidebySide">
                 <p>Please Select an Interest:</p>
-                <div className="interestsDiv">
+                  <div className="interestsDiv" id="interest">
                   <button className="interestButton" onClick={this.interestButton}>Comics</button>
                   <button className="interestButton" onClick={this.interestButton}>Collectables</button>
                   <button className="interestButton" onClick={this.interestButton}>Games</button>
@@ -304,6 +343,7 @@ class FormTimes extends React.Component {
                   <textarea name="notes" id="notes" cols="20" rows="10" className="text" onChange={this.update('notes')}></textarea>
               </div>
               </div>
+              {this.renderErrors()}
               <input type="submit" value="Book Appointment" className="button4 bouncy submit"/>
               
             </form> 
